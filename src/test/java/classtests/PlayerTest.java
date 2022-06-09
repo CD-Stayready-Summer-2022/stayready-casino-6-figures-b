@@ -61,6 +61,14 @@ public class PlayerTest {
         Integer age = player.getAge();
         Double money = player.getMoney();
 
+        player.setAge(21);
+        player.setName("Sabrina");
+        player.setMoney(1500.00);
+
+        name = player.getName();
+        age = player.getAge();
+        money = player.getMoney();
+
         Player actual = player;
 
         Assertions.assertEquals(expected.toString(), actual.toString());

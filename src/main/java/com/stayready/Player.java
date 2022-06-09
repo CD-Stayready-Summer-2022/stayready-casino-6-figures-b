@@ -40,3 +40,4 @@ public class Player {
         return name+" "+age+" "+money;
     }
 }
+
