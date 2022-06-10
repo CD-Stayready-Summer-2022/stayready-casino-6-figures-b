@@ -18,7 +18,7 @@ public class CardsTest {
         String suit = King.getSuit();
         Integer value = King.getValue();
         //then
-        String actual = String.format("%s %d", suit, value);
+        String actual = String.format("%s%d", suit, value);
         Assertions.assertEquals(expected,actual);
     }
     @Test
@@ -28,7 +28,7 @@ public class CardsTest {
         String expected = "SevenHeart: 7";
         String suit = SevenHeart.getSuit();
         Integer value = SevenHeart.getValue();
-        String actual = String.format("%s %d",suit,value );
+        String actual = String.format("%s%d",suit,value );
         Assertions.assertEquals(expected,actual);
     }
 

@@ -17,7 +17,8 @@ public class Deck {
 
         for(String suit : cardSuits){
             for(int i = 0; i < 13; i++){
-                cards.add(new Card(suit, new Integer(i)));
+                Card tempCard = new Card(suit, i+1);
+                cards.add(tempCard);
             }
         }
 
