@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import java.util.Collections;
 
-public class Hand{
+public class Hand {
     private ArrayList<Card> handCards;
     private int cardIndex;
 
@@ -22,6 +22,3 @@ public class Hand{
         handCards.remove(cardIndex);
     }
 }
-
-
-

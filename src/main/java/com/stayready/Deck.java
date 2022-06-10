@@ -5,7 +5,6 @@ import java.util.Collections;
 public class Deck {
     private ArrayList<Card> cards;
 
-
     public Deck() {
         cards = new ArrayList<>();
         buildDeck();
@@ -30,6 +29,5 @@ public class Deck {
     public void shuffle(){
         Collections.shuffle(cards);
     }
-
 
 }
