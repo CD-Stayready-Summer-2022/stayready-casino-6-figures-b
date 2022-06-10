@@ -1,6 +1,7 @@
 package com.stayready;
 
 import java.util.ArrayList;
+
 import java.util.Collections;
 
 public class Hand{
@@ -21,4 +22,8 @@ public class Hand{
 //        this.cardIndex = cardIndex;
 //        cards.remove(cardIndex);
 //    }
+
 }
+
+
+

@@ -9,7 +9,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class DeckTest {
-
     @Test
     @DisplayName("constructor test")
     public void constructorTest01(){
