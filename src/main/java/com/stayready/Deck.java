@@ -1,32 +1,59 @@
 package com.stayready;
-
-import java.lang.reflect.Array;
+import com.stayready.Card;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 public class Deck {
-
-
     private ArrayList<Card> cards;
 
+
     public Deck() {
-        this.cards = new ArrayList<>();
+        cards = new ArrayList<>();
+        buildDeck();
+    }
 
-        String cardSuits[] = {"Spades", "Clubs", "Hearts", "Diamonds"};
-
-        for(String suit : cardSuits){
-            for(int i = 0; i < 13; i++){
-                Card tempCard = new Card(suit, i+1);
-                cards.add(tempCard);
+    private void buildDeck(){
+        for(CardSuit suit: CardSuit.values()){
+            for(CardValue value: CardValue.values()){
+                //System.out.println(value.name + " of "+ suit.name);
+                Card card = new Card(value, suit);
+                cards.add(card);
             }
         }
-
-        shuffle((ArrayList<Card>) cards);
     }
 
-    public static void shuffle(ArrayList<Card> cards) {
+    public Card deal(Integer numberOfCards){
+        return null;
+    }
+
+    public Integer cardsRemaining(){
+        return cards.size();
+    }
+
+    public void shuffle(){
         Collections.shuffle(cards);
     }
+
+
+    //    private ArrayList<Card> cards;
+//
+//    public Deck() {
+//        this.cards = new ArrayList<>();
+//
+//        String cardSuits[] = {"Spades", "Clubs", "Hearts", "Diamonds"};
+//
+//        for(String suit : cardSuits){
+//            for(int i = 0; i < 13; i++){
+//                Card tempCard = new Card(suit, i+1);
+//                cards.add(tempCard);
+//            }
+//        }
+//
+//        shuffle((ArrayList<Card>) cards);
+//    }
+//
+//    public static void shuffle(ArrayList<Card> cards) {
+//        Collections.shuffle(cards);
+//    }
 
 }
