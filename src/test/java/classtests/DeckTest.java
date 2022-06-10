@@ -19,4 +19,12 @@ public class DeckTest {
         Assertions.assertEquals(expected,actual);
     }
 
+    @Test
+    @DisplayName("Cards Remaining Test")
+    public void cardsRemainingTest01(){
+        Deck deck = new Deck();
+
+
+    }
+
 }
