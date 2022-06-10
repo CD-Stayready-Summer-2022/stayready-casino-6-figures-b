@@ -19,6 +19,6 @@ public class Card {
 
     @Override
     public String toString(){
-        return String.format("Suit: %s, Value: %s", suit.name, value.name);
+        return String.format("[Suit: %s, Value: %s]", suit.name, value.name);
     }
 }

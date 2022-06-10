@@ -2,23 +2,29 @@ package com.stayready;
 
 import java.util.ArrayList;
 
-import java.util.Collections;
-
-public class Hand {
-    private ArrayList<Card> handCards;
-    private int cardIndex;
+public class Hand implements CardManager{
+    private ArrayList<Card> hand;
 
     public Hand() {
-        handCards = new ArrayList<>();
+        hand = new ArrayList<>();
     }
 
 
-    public void addCard(String suit, Integer value) {
-
+    @Override
+    public Card removeCard(int cardIndex) {
+        Card card = new Card(hand.get(cardIndex).getValue(),hand.get(cardIndex).getSuit());
+        hand.remove(cardIndex);
+        return card;
     }
 
-    public void removeCard(int cardIndex) {
-        this.cardIndex = cardIndex;
-        handCards.remove(cardIndex);
+    public void addCard(int cardIndex, Card card) {
+        hand.add(cardIndex, card);
+    }
+
+    @Override
+    public String toString() {
+        return "Hand{" +
+                "hand=" + hand +
+                '}';
     }
 }
