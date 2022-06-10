@@ -23,10 +23,15 @@ public class Deck {
         }
 
         shuffle((ArrayList<Card>) cards);
+
+        cards.contains()
     }
 
-    public static void shuffle(ArrayList<Card> cards) {
+    public void shuffle(ArrayList<Card> cards) {
         Collections.shuffle(cards);
     }
+
+
+
 
 }
