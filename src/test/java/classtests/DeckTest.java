@@ -11,20 +11,38 @@ import org.junit.jupiter.api.Test;
 
 public class DeckTest {
     @Test
-    @DisplayName("constructor test")
+    @DisplayName("Constructor test")
     public void constructorTest01(){
+        //Given
         Deck deck = new Deck();
+        //When
         Integer expected = 52;
         Integer actual = deck.cardsRemaining();
         Assertions.assertEquals(expected,actual);
     }
 
     @Test
-    @DisplayName("Cards Remaining Test")
+    @DisplayName("RemoveCard Test")
     public void cardsRemainingTest01(){
         Deck deck = new Deck();
-
-
+        Card card = deck.removeCard(0);
+        Integer expected = 51;
+        Integer actual = deck.cardsRemaining();
+        Assertions.assertEquals(expected, actual);
     }
+
+    @Test
+    @DisplayName("Card Shuffle Test")
+    public void cardShuffleTest01() {
+        Deck deck = new Deck();
+        Deck deck2 = new Deck();
+        String unexpected = deck2.toString();
+
+        deck.shuffle();
+        String actual = deck.toString();
+
+        Assertions.assertNotEquals(unexpected, actual);
+    }
+
 
 }

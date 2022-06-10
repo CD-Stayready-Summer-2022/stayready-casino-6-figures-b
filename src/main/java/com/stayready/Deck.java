@@ -10,7 +10,7 @@ public class Deck implements CardManager{
         buildDeck();
     }
 
-    void buildDeck(){
+    public void buildDeck(){
         for(CardSuit suit: CardSuit.values()){
             for(CardValue value: CardValue.values()){
                 Card card = new Card(value, suit);
@@ -18,16 +18,6 @@ public class Deck implements CardManager{
             }
         }
     }
-
-//    public ArrayList deal(Integer numberOfCards){
-////        for(int i=0;i <numberOfCards;i++){
-////            int pos = cards.size()-1;
-////            card = cards.get(pos);
-////            hand.add();
-////            cards.remove(pos);
-////        }
-//        return null;
-//    }
 
     public Integer cardsRemaining(){
         return cards.size();
@@ -37,11 +27,6 @@ public class Deck implements CardManager{
         Collections.shuffle(cards);
     }
 
-    public static void main(String[] args) {
-        Deck deck = new Deck();
-        deck.shuffle();
-    }
-
     @Override
     public Card removeCard(int cardIndex) {
         Card card = new Card(cards.get(cardIndex).getValue(),cards.get(cardIndex).getSuit());
@@ -49,4 +34,10 @@ public class Deck implements CardManager{
         return card;
     }
 
+    @Override
+    public String toString() {
+        return "Deck{" +
+                "cards=" + cards +
+                '}';
+    }
 }
