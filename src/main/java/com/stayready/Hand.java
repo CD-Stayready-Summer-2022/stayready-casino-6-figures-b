@@ -1,6 +1,7 @@
 package com.stayready;
 
 import java.util.ArrayList;
+
 import java.util.Collections;
 
 public class Hand{
@@ -16,8 +17,11 @@ public class Hand{
 
     }
 
-    public void removeCard(int cardIndex){
+    public void removeCard(int cardIndex) {
         this.cardIndex = cardIndex;
         handCards.remove(cardIndex);
     }
 }
+
+
+

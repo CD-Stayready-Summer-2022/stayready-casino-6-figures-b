@@ -1,8 +1,5 @@
 package com.stayready;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Card {
     private CardValue value;
     private CardSuit suit;
