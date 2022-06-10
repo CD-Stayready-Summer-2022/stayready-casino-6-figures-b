@@ -1,5 +1,4 @@
 package com.stayready;
-import com.stayready.Card;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -20,7 +19,6 @@ public class Deck {
             }
         }
     }
-
     public Card deal(Integer numberOfCards){
         return null;
     }
