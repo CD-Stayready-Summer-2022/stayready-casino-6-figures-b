@@ -13,9 +13,14 @@ public class CardTest {
     @DisplayName("constructor test")
     public void constructorTest01(){
         Card card = new Card(CardValue.ACE, CardSuit.SPADES);
-        String expected = "Suit: Spades, Value: Ace";
+        String expected = "+--------+\n|        |\n|        |\n| Spades |\n|        |\n|   Ace  |\n|        |\n+--------+";
         String actual = card.toString();
+        System.out.println(expected+"\n"+actual);
         Assertions.assertEquals(expected,actual);
+
+
     }
+
+
 
 }
