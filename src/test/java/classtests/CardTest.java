@@ -1,7 +1,7 @@
 package classtests;
-import com.stayready.Card;
-import com.stayready.CardSuit;
-import com.stayready.CardValue;
+import com.stayready.cards.Card;
+import com.stayready.cards.CardSuit;
+import com.stayready.cards.CardValue;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

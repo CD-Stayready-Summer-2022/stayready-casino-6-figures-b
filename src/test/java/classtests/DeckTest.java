@@ -1,9 +1,9 @@
 package classtests;
 
-import com.stayready.Card;
+import com.stayready.cards.Card;
 
 
-import com.stayready.Deck;
+import com.stayready.deck.Deck;
 import org.junit.jupiter.api.Assertions;
 
 import org.junit.jupiter.api.DisplayName;
@@ -25,7 +25,7 @@ public class DeckTest {
     @DisplayName("RemoveCard Test")
     public void cardsRemainingTest01(){
         Deck deck = new Deck();
-        Card card = deck.removeCard(0);
+        Card card = deck.takeCardFromDeck();
         Integer expected = 51;
         Integer actual = deck.cardsRemaining();
         Assertions.assertEquals(expected, actual);

@@ -1,4 +1,4 @@
-package com.stayready;
+package com.stayready.cards;
 
 public class Card {
     private CardValue value;
@@ -7,6 +7,12 @@ public class Card {
     public Card(CardValue value, CardSuit suit) {
         this.value = value;
         this.suit = suit;
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if (this == o ) return true;
+        return false;
     }
 
     public CardValue getValue() {

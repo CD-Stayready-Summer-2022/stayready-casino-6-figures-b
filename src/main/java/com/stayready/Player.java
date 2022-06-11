@@ -1,14 +1,12 @@
 package com.stayready;
 
+import java.util.Objects;
+
 public class Player {
     private String name;
-    private Integer age;
-    private Double money;
 
-    public Player(String name, Integer age, Double money) {
+    public Player(String name) {
         this.name = name;
-        this.age = age;
-        this.money = money;
     }
 
     public String getName() {
@@ -19,25 +17,18 @@ public class Player {
         this.name = name;
     }
 
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    public Double getMoney() {
-        return money;
-    }
-
-    public void setMoney(Double money) {
-        this.money = money;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Player player = (Player) o;
+        return Objects.equals(name, player.name);
     }
 
     @Override
-    public String toString() {
-        return name+" "+age+" "+money;
+    public int hashCode() {
+        return Objects.hash(name);
     }
+
 }
 
