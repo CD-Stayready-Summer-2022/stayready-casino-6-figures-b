@@ -13,7 +13,7 @@ public class CardTest {
     @DisplayName("constructor test")
     public void constructorTest01(){
         Card card = new Card(CardValue.ACE, CardSuit.SPADES);
-        String expected = "Suit: Spades, Value: Ace";
+        String expected = "[Suit: Spades, Value: Ace]";
         String actual = card.toString();
         Assertions.assertEquals(expected,actual);
     }
