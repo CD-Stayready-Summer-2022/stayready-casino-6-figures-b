@@ -1,6 +1,6 @@
 package com.stayready.cards;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class Hand {
     private ArrayList<Card> cards;
@@ -13,8 +13,13 @@ public class Hand {
         return cards;
     }
 
-    public Boolean valueOfCardInHand(){
-        return null;
+    public Boolean valueOfCardInHand(CardValue value){
+        for(Card card:cards){
+            if(card.getValue().equals(value)){
+                return true;
+            }
+        }
+        return false;
     }
 
     public void giveCardToHand(Card card){
@@ -31,6 +36,7 @@ public class Hand {
         cards.remove(indexOfCard);
         return cardRemoved;
     }
+
     @Override
     public String toString() {
         return "Hand{" +

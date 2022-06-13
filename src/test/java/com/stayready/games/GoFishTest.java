@@ -27,4 +27,11 @@ public class GoFishTest {
         Integer actualNumberOfCards = player1.getHand().getCards().size();
         Assertions.assertEquals(expectedNumberOfCards, actualNumberOfCards);
     }
+
+    @Test
+    @DisplayName("")
+    public void onlyAskHandTest01(){
+
+    }
+
 }

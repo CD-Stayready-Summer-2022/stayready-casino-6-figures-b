@@ -1,7 +1,8 @@
 package com.stayready.games;
 import com.stayready.Player;
 import com.stayready.cards.*;
-import java.util.Scanner;
+
+import java.util.*;
 
 public class GoFish extends CardGame {
     private final static Integer NUMBER_TO_DEAL = 7;
@@ -17,16 +18,18 @@ public class GoFish extends CardGame {
 
     @Override
     public void startGame() {
-        boolean gameOver = false;
+        //boolean gameOver = false;
         deal();
-        while(!gameOver){
+        while(player1.getCountFour() + player2.getCountFour() < 13){
             promptUserToPlay(player1);
-            //promptUserToPlay(player2);
-            gameOver = true;
+            System.out.println("-----------------");
+            promptUserToPlay(player2);
+            System.out.println("-----------------");
         }
     }
 
-    public void promptUserToPlay(Player player){
+    public void promptUserToPlay(Player player){ //turn""
+        Hand hand = (player1.equals(player))? player2.getHand() : player1.getHand();
         String msg = String.format("Hey, %s what card value are you looking for?", player.getName());
         System.out.println(msg);
         int x = 0;
@@ -36,11 +39,18 @@ public class GoFish extends CardGame {
             System.out.println(msg2);
             x++;
         }
-        Integer input1 = scanner.nextInt();
-        CardValue value1 = CardValue.values()[input1];
-        System.out.println("You selected " + value1.name);
-        Hand hand = (player1.equals(player))? player2.getHand() : player1.getHand();
+        Integer input = scanner.nextInt();
+        CardValue value = CardValue.values()[input];
+        System.out.println("You selected " + value.name);
 
+        if (hand.valueOfCardInHand(value)) {
+            String msg3 = String.format("You received the card %s", value.name);
+            System.out.println(msg3);
+
+        } else {
+            System.out.println("Go fish!");
+            hand.giveCardToHand(deck.takeCardFromDeck());
+        }
     }
 
 
