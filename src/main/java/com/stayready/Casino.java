@@ -16,8 +16,8 @@ public class Casino {
     public void start(){
         System.out.println("Player 1 whats is your name?");
         String name1 = scanner.next();
-        System.out.println("Player 2 whats is your name?");
-        String name2 = scanner.next();
+        //System.out.println("Player 2 whats is your name?");
+        String name2 = "AI";
         GoFish goFish = new GoFish(new CardPlayer(name1), new CardPlayer(name2));
         goFish.startGame();
     }

@@ -31,5 +31,10 @@ public class Hand {
         cards.remove(indexOfCard);
         return cardRemoved;
     }
-
+    @Override
+    public String toString() {
+        return "Hand{" +
+                "cards=" + cards +
+                '}';
+    }
 }
