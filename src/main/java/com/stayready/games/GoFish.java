@@ -18,7 +18,6 @@ public class GoFish extends CardGame {
 
     @Override
     public void startGame() {
-        //boolean gameOver = false;
         deal();
         while(player1.getCountFour() + player2.getCountFour() < 13){
             promptUserToPlay(player1);
@@ -30,6 +29,8 @@ public class GoFish extends CardGame {
 
     public void promptUserToPlay(Player player){ //turn""
         Hand hand = (player1.equals(player))? player2.getHand() : player1.getHand();
+        System.out.println(player.getHand().toString());
+
         String msg = String.format("Hey, %s what card value are you looking for?", player.getName());
         System.out.println(msg);
         int x = 0;
@@ -41,15 +42,19 @@ public class GoFish extends CardGame {
         }
         Integer input = scanner.nextInt();
         CardValue value = CardValue.values()[input];
+
         System.out.println("You selected " + value.name);
 
         if (hand.valueOfCardInHand(value)) {
             String msg3 = String.format("You received the card %s", value.name);
             System.out.println(msg3);
+            //method for checking 4ofkind
+            promptUserToPlay(player);
 
         } else {
             System.out.println("Go fish!");
             hand.giveCardToHand(deck.takeCardFromDeck());
+            //method for checking 4ofkind
         }
     }
 
