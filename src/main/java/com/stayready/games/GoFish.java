@@ -1,7 +1,6 @@
 package com.stayready.games;
 import com.stayready.Player;
 import com.stayready.cards.*;
-
 import java.util.Scanner;
 
 public class GoFish extends CardGame {
@@ -14,28 +13,21 @@ public class GoFish extends CardGame {
         this.player1 = player1;
         this.player2 = player2;
         this.scanner = new Scanner(System.in);
-
     }
 
     @Override
     public void startGame() {
         boolean gameOver = false;
         deal();
-        while((player1.getCountFour() < 13) && (player2.getCountFour()< 13) ){
-            printHand(player1);
+        while(!gameOver){
+            promptUserToPlay(player1);
             //promptUserToPlay(player2);
-            haveTurn(player1);
             gameOver = true;
         }
     }
 
-    public void printHand(Player player){
-        Hand hand = (player1.equals(player))? player2.getHand() : player1.getHand();
-        System.out.println(hand.toString());
-    }
-
-    public void haveTurn(Player player){
-        String msg = String.format("\nHey, %s what card value are you looking for?", player.getName());
+    public void promptUserToPlay(Player player){
+        String msg = String.format("Hey, %s what card value are you looking for?", player.getName());
         System.out.println(msg);
         int x = 0;
         String msg2 = "";
@@ -47,6 +39,8 @@ public class GoFish extends CardGame {
         Integer input1 = scanner.nextInt();
         CardValue value1 = CardValue.values()[input1];
         System.out.println("You selected " + value1.name);
+        Hand hand = (player1.equals(player))? player2.getHand() : player1.getHand();
+
     }
 
 
