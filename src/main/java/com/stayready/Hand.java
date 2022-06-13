@@ -9,7 +9,6 @@ public class Hand implements CardManager{
         hand = new ArrayList<>();
     }
 
-
     @Override
     public Card removeCard(int cardIndex) {
         Card card = new Card(hand.get(cardIndex).getValue(),hand.get(cardIndex).getSuit());

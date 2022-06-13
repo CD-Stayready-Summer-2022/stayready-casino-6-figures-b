@@ -1,8 +1,38 @@
 package com.stayready.games;
 
+import com.stayready.Card;
+import com.stayready.Deck;
+import com.stayready.Player;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class GoFish extends CardGame{
-//    player and dealer each get hand(7 cards)
-//
+
+    private ArrayList<Player> players;
+    private Player player1;
+    private Player player2;
+
+    public GoFish(Player player1, Player player2) {
+        this.player1 = player1;
+        this.player2 = player2;
+        this.players = new ArrayList<>();
+        players.add(player1);
+        players.add(player2);
+    }
+
+    @Override
+    public void startGame() {
+        Boolean hasGameEnded = false;
+        while(!hasGameEnded){
+
+        }
+
+    }
+
+    public void gameAlgo(){
+        //    player and dealer each get hand(7 cards)
+
 //    PLAYERS TURN
 //    player goes first and must ask for a valid
 //    card(value already in hand)
@@ -49,5 +79,20 @@ public class GoFish extends CardGame{
 //
 //
 //            ENDGAME
+    }
 
+    public void userPlayMenu(Player player){
+
+    }
+
+
+    public void dealCards(Integer numCards){
+        for(int i = 0; i < numCards; i++){
+            Card tempCard1 = deck.removeCard(0);
+            player1.getHand().addCard(0, tempCard1);
+
+            Card tempCard2 = deck.removeCard(0);
+            player2.getHand().addCard(0, tempCard2);
+        }
+    }
 }

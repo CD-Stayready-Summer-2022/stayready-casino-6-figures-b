@@ -4,11 +4,17 @@ public class Player {
     private String name;
     private Integer age;
     private Double money;
+    protected Hand hand;
 
     public Player(String name, Integer age, Double money) {
         this.name = name;
         this.age = age;
         this.money = money;
+        hand = new Hand();
+    }
+
+    public Hand getHand(){
+        return hand;
     }
 
     public String getName() {

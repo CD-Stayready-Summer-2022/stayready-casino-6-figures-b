@@ -1,5 +1,7 @@
 package com.stayready;
 
+import com.stayready.games.Game;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
