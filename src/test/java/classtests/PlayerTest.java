@@ -1,18 +1,14 @@
 package classtests;
-
-
 import com.stayready.Player;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-//import java.util.Scanner;
-
 public class PlayerTest {
     @Test
     @DisplayName("constructor test")
     public void constructorTest00(){
-        Player player = new Player("",0,0.00);
+        Player player = new Player("");
 
         Player actual = player;
 
@@ -23,13 +19,13 @@ public class PlayerTest {
     @Test
     @DisplayName("constructor test")
     public void constructorTest01(){
-        Player expected = new Player("Sabrina",20,500.00);
+        Player expected = new Player("Sabrina");
 
         String name = "Sabrina";
         Integer age = 20;
         Double money = 500.00;
 
-        Player player = new Player(name,age,money);
+        Player player = new Player(name);
 
         Player actual = player;
 
@@ -39,12 +35,10 @@ public class PlayerTest {
     @Test
     @DisplayName("getter test")
     public void getterTest00(){
-        Player expected = new Player("Sabrina",20,500.00);
+        Player expected = new Player("Sabrina");
 
-        Player player = new Player("Sabrina", 20, 500.00);
+        Player player = new Player("Sabrina");
         String name = player.getName();
-        Integer age = player.getAge();
-        Double money = player.getMoney();
 
         Player actual = player;
 
@@ -54,20 +48,14 @@ public class PlayerTest {
     @Test
     @DisplayName("setter test")
     public void setterTest00(){
-        Player expected = new Player("Sabrina",21,1500.00);
+        Player expected = new Player("Sabrina");
 
-        Player player = new Player("Sabina", 20, 500.00);
+        Player player = new Player("Sabina");
         String name = player.getName();
-        Integer age = player.getAge();
-        Double money = player.getMoney();
 
-        player.setAge(21);
         player.setName("Sabrina");
-        player.setMoney(1500.00);
 
         name = player.getName();
-        age = player.getAge();
-        money = player.getMoney();
 
         Player actual = player;
 
