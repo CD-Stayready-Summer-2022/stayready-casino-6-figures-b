@@ -6,31 +6,34 @@ import java.util.Objects;
 
 public class Player {
     private String name;
+    private Integer age;
+    private Double money;
+
     protected Hand hand;
-    private int countFour;
+
+    public Player(String name, Integer age, Double money
+    ) {
+        this.name = name;
+        this.age = age;
+        this.money = money;
+        hand = new Hand();
+    }
 
     public Player(String name) {
         this.name = name;
+    }
+
+    public Hand getHand(){
+        return hand;
+
     }
 
     public String getName() {
         return name;
     }
 
-    public Hand getHand() {
-        return hand;
-    }
-
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getCountFour() {
-        return countFour;
-    }
-
-    public void setCountFour(int countFour) {
-        this.countFour = countFour;
     }
 
 

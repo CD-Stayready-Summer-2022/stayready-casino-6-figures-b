@@ -2,10 +2,10 @@ package com.stayready.cards;
 
 import com.stayready.Player;
 
-public class CardPlayer extends Player {
+public class Dealer extends Player {
     private Hand hand;
 
-    public CardPlayer(String name) {
+    public Dealer(String name) {
         super(name);
         this.hand = new Hand();
     }
@@ -13,5 +13,4 @@ public class CardPlayer extends Player {
     public Hand getHand() {
         return hand;
     }
-
 }

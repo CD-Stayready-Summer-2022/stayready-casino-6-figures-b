@@ -14,4 +14,12 @@ public enum CardValue {
         this.name = name;
     }
 
+
+    public Integer getValue() {
+        return value;
+    }
+
+    public String getName() {
+        return name;
+    }
 }
