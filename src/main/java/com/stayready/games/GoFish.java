@@ -3,64 +3,105 @@ import com.stayready.Player;
 import com.stayready.cards.*;
 
 import java.util.*;
+import java.util.Map.Entry;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+
 
 public class GoFish extends CardGame {
     private final static Integer NUMBER_TO_DEAL = 7;
-    private CardPlayer player1;
-    private CardPlayer player2;
+    private goFishPlayer player1;
+    private goFishPlayer player2;
     private Scanner scanner;
 
-    public GoFish(CardPlayer player1, CardPlayer player2) {
-        this.player1 = player1;
-        this.player2 = player2;
+    public GoFish(Player player1, Player player2) {
+        this.player1 = (goFishPlayer) player1;
+        this.player2 = (goFishPlayer) player2;
         this.scanner = new Scanner(System.in);
     }
 
     @Override
     public void startGame() {
         deal();
-        while(player1.getCountFour() + player2.getCountFour() < 13){
+        while ((player1.getBookNum() + player2.getBookNum() < 13 - 1) && deck.cardsRemaining() != 0) {
             promptUserToPlay(player1);
             System.out.println("-----------------");
             promptUserToPlay(player2);
             System.out.println("-----------------");
         }
+        System.out.println(String.format("%s has won the game!", (player1.getBookNum() >= player2.getBookNum())?player1.getName():player2.getName()));
     }
 
-    public void promptUserToPlay(Player player){ //turn""
-        Hand hand = (player1.equals(player))? player2.getHand() : player1.getHand();
-        System.out.println(player.getHand().toString());
+    public void promptUserToPlay(goFishPlayer player) {
+        Hand hand = (player1.equals(player)) ? player1.getHand() : player2.getHand();
+        Hand hand2 = (player1.equals(player)) ? player2.getHand() : player1.getHand();
+//        System.out.println("Hand1: " + hand.toString());
+//        System.out.println("Hand2: " + hand2.toString());
 
-        String msg = String.format("Hey, %s what card value are you looking for?", player.getName());
-        System.out.println(msg);
-        int x = 0;
-        String msg2 = "";
-        for (CardValue value: CardValue.values()) {
-            msg2 = String.format("Press %d for %s", x, value.name);
-            System.out.println(msg2);
-            x++;
+        System.out.println(String.format("%s it's your turn. Enter from the choices the card value are you looking for?", player.getName()));
+
+        HashMap<CardValue, String> options = new HashMap<>();
+        ArrayList<CardValue> valuesInHand = new ArrayList<>();
+        for (Card card : player.getHand().getCards()) {
+            if (!options.containsKey(card.getValue())) {
+                options.put(card.getValue(), card.getValue().name);
+                valuesInHand.add(card.getValue());
+            }
+        }
+
+        System.out.println("Option\t\tCard Type\tQty in Hand");
+        int i = 0;
+        for (CardValue val : valuesInHand) {
+            System.out.print(String.format("Press %d for %s", i++, val.name));
+            if(val.getName().length() <= 3){
+                System.out.println(String.format("\t\t\t%d", hand.getNumberOfCardsWithSpecificValue(val)));
+            }else{
+                System.out.println(String.format("\t\t%d", hand.getNumberOfCardsWithSpecificValue(val)));
+            }
         }
         Integer input = scanner.nextInt();
-        CardValue value = CardValue.values()[input];
+        CardValue choice = valuesInHand.get(input);
+        System.out.println("The value you're looking for is: " + choice.value);
+        HashMap<CardValue, String> options2 = new HashMap<>();
+        ArrayList<CardValue> valuesInHand2 = new ArrayList<>();
+        for (Card card : hand2.getCards()) {
+            if (!options2.containsKey(card.getValue())) {
+                options2.put(card.getValue(), card.getValue().name);
+                valuesInHand.add(card.getValue());
+            }
+        }
 
-        System.out.println("You selected " + value.name);
-
-        if (hand.valueOfCardInHand(value)) {
-            String msg3 = String.format("You received the card %s", value.name);
-            System.out.println(msg3);
-            //method for checking 4ofkind
+        if (options2.containsKey(choice)) {
+            List<Card> removed = new ArrayList<Card>();
+            for (Card element : hand2.getCards()) {
+                if (element.getValue() == choice){
+                    removed.add(element);
+                    hand.giveCardToHand(element);
+                }
+            }
+            hand2.getCards().removeAll(removed);
+            System.out.format("You received %d %s cards from the other player./n", removed.size(), choice.name);
+            if (isThereABook(hand, choice)) {
+                //removeBook(hand, choice);
+                player.setBookNum(player.getBookNum() + 1);
+            }
+            //Decision to keep same player next turn as they guessed correctly
             promptUserToPlay(player);
-
-        } else {
+        }
+        else{
             System.out.println("Go fish!");
             hand.giveCardToHand(deck.takeCardFromDeck());
             //method for checking 4ofkind
+            if (isThereABook(hand, choice)) {
+                removeBook(hand, choice);
+                player.setBookNum(player.getBookNum() + 1);
+            }
         }
+
     }
 
-
     public void deal(){
-        for(int x =0 ; x < NUMBER_TO_DEAL; x++){
+        for(int x =0 ; x < NUMBER_TO_DEAL +1; x++){
             Card card1 = deck.takeCardFromDeck();
             player1.getHand().giveCardToHand(card1);
 
@@ -69,17 +110,37 @@ public class GoFish extends CardGame {
         }
     }
 
-    public CardPlayer getPlayer1() {
+    public Boolean isThereABook(Hand hand, CardValue value){
+        int counter = 0;
+        for(Card card: hand.getCards()) {
+            if (card.getValue() == value) {
+                counter++;
+            }
+        }
+        if(counter == 4) {
+            return true;
+        }
+        return false;
+    }
+
+    public void removeBook(Hand hand, CardValue value){
+        for (Card card : hand.getCards()) {
+            if (card.getValue() == value) {
+                hand.removeCardFromHand(card);
+                break;
+            }
+        }
+    }
+
+
+    public goFishPlayer getPlayer1() {
         return player1;
     }
 
-    public CardPlayer getPlayer2() {
+    public goFishPlayer getPlayer2() {
         return player2;
     }
-
-
-
-//    START GAME
+    //    START GAME
 
 //    player and dealer each get hand(7 cards)
 //

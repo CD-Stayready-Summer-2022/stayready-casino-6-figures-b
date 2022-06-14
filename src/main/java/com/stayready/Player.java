@@ -7,7 +7,6 @@ import java.util.Objects;
 public class Player {
     private String name;
     protected Hand hand;
-    private int countFour;
 
     public Player(String name) {
         this.name = name;
@@ -23,14 +22,6 @@ public class Player {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getCountFour() {
-        return countFour;
-    }
-
-    public void setCountFour(int countFour) {
-        this.countFour = countFour;
     }
 
 
