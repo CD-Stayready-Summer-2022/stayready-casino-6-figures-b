@@ -1,9 +1,7 @@
 package com.stayready;
 
 import com.stayready.cards.CardPlayer;
-import com.stayready.games.GoFish;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Casino {
