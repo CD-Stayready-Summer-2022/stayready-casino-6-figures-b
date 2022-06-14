@@ -1,6 +1,6 @@
 package com.stayready.games;
 
-import com.stayready.cards.CardPlayer;
+import com.stayready.cards.goFishPlayer;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -9,13 +9,13 @@ import org.junit.jupiter.api.Test;
 public class GoFishTest {
 
     private GoFish goFish;
-    private CardPlayer player1;
-    private CardPlayer player2;
+    private goFishPlayer player1;
+    private goFishPlayer player2;
 
     @BeforeEach
     public void setup(){
-        player1 = new CardPlayer("Jimmy Bones");
-        player2 = new CardPlayer("Tyra Banks");
+        player1 = new goFishPlayer("Jimmy Bones");
+        player2 = new goFishPlayer("Tyra Banks");
         goFish = new GoFish(player1, player2);
     }
 
@@ -27,4 +27,11 @@ public class GoFishTest {
         Integer actualNumberOfCards = player1.getHand().getCards().size();
         Assertions.assertEquals(expectedNumberOfCards, actualNumberOfCards);
     }
+
+    @Test
+    @DisplayName("")
+    public void onlyAskHandTest01(){
+
+    }
+
 }

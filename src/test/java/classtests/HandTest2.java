@@ -65,7 +65,7 @@ public class HandTest2 {
     public void getCardFromHandTest01(){
         hand.giveCardToHand(card1);
         Card expected = card1;
-        Card actual = hand.getCardFromHand(card1);
+        Card actual = hand.removeCardFromHand(card1);
         Assertions.assertEquals(expected, actual);
         Assertions.assertFalse(hand.cardIsInHand(card1));
     }

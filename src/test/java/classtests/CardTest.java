@@ -15,7 +15,12 @@ public class CardTest {
         Card card = new Card(CardValue.ACE, CardSuit.SPADES);
         String expected = "[Suit: Spades, Value: Ace]";
         String actual = card.toString();
+        System.out.println(expected+"\n"+actual);
         Assertions.assertEquals(expected,actual);
+
+
     }
+
+
 
 }
