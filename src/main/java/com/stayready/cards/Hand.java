@@ -41,4 +41,10 @@ public class Hand {
     public String toString() {
         return "Hand: " + cards;
     }
+
+    // only used for testing
+    public void setCards(ArrayList<Card> cards) {
+        this.cards = cards;
+    }
+
 }

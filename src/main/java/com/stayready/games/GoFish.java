@@ -29,6 +29,7 @@ public class GoFish extends CardGame {
 
     public void promptUserToPlay(Player player){ //turn""
         Hand hand = (player1.equals(player))? player2.getHand() : player1.getHand();
+        Hand dealHand = (player2.equals(player))? player1.getHand() : player2.getHand();
         System.out.println(player.getHand().toString());
 
         String msg = String.format("Hey, %s what card value are you looking for?", player.getName());
