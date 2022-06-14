@@ -49,8 +49,12 @@ public class Hand {
 
     @Override
     public String toString() {
-        return "Hand{" +
-                "cards=" + cards +
-                '}';
+        return "Hand: " + cards;
     }
+
+    // only used for testing
+    public void setCards(ArrayList<Card> cards) {
+        this.cards = cards;
+    }
+
 }

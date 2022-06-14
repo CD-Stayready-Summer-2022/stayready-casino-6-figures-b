@@ -33,12 +33,9 @@ public class GoFish extends CardGame {
         System.out.println(String.format("%s has won the game!", (player1.getBookNum() >= player2.getBookNum())?player1.getName():player2.getName()));
     }
 
-
     public void promptUserToPlay(goFishPlayer player) {
         Hand hand = (player1.equals(player)) ? player1.getHand() : player2.getHand();
         Hand hand2 = (player1.equals(player)) ? player2.getHand() : player1.getHand();
-//        System.out.println("Hand1: " + hand.toString());
-//        System.out.println("Hand2: " + hand2.toString());
 
         System.out.println(String.format("%s it's your turn. Enter from the choices the card value are you looking for?", player.getName()));
 

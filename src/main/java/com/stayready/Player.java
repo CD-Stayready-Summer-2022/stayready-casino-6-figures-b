@@ -19,6 +19,10 @@ public class Player {
         hand = new Hand();
     }
 
+    public Player(String name) {
+        this.name = name;
+    }
+
     public Hand getHand(){
         return hand;
 
