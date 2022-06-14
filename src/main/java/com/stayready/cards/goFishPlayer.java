@@ -7,7 +7,7 @@ public class goFishPlayer extends Player {
     private Integer bookNum = 0;
 
     public goFishPlayer(String name) {
-        super(name);
+        super(name, 20, 500.00);
         this.hand = new Hand();
     }
 

@@ -6,14 +6,13 @@ import java.util.Objects;
 
 public class Player {
     private String name;
-<<<<<<< HEAD
     private Integer age;
     private Double money;
-=======
->>>>>>> Renato
+
     protected Hand hand;
 
-    public Player(String name) {
+    public Player(String name, Integer age, Double money
+    ) {
         this.name = name;
         this.age = age;
         this.money = money;
@@ -27,10 +26,6 @@ public class Player {
 
     public String getName() {
         return name;
-    }
-
-    public Hand getHand() {
-        return hand;
     }
 
     public void setName(String name) {

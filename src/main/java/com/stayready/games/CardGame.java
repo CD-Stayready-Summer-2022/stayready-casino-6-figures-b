@@ -1,6 +1,7 @@
 package com.stayready.games;
 
-import com.stayready.Deck;
+
+import com.stayready.deck.Deck;
 
 public abstract class CardGame implements Game{
 
