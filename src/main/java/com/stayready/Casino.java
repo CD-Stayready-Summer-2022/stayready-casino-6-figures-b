@@ -2,6 +2,7 @@ package com.stayready;
 import com.stayready.cards.BlackJackPlayer;
 import com.stayready.cards.Dealer;
 import com.stayready.cards.goFishPlayer;
+import com.stayready.craps.Craps;
 import com.stayready.games.Blackjack;
 import com.stayready.games.GoFish;
 import java.util.Scanner;
@@ -33,6 +34,8 @@ public class Casino {
         }
         else if (gameChoice.equals("2")){
             System.out.println("You chose craps");
+            Craps craps = new Craps();
+            craps.startGame();
         }
         else{
             System.out.println("You must not know what you want to play," +
