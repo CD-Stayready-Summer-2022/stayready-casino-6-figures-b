@@ -1,7 +1,6 @@
 package com.stayready;
 import com.stayready.cards.BlackJackPlayer;
 import com.stayready.cards.Dealer;
-import com.stayready.cards.goFishPlayer;
 import com.stayready.craps.Craps;
 import com.stayready.games.Blackjack;
 import com.stayready.games.GoFish;
@@ -13,7 +12,6 @@ public class Casino {
     public Casino(){
         scanner = new Scanner(System.in);
     }
-
     public void gameMenu(String name1,int age, Double money){
         String name2 = "[Lucky Star ☆] Casino";
         System.out.println("What game would you like to play?\n" +
@@ -24,7 +22,7 @@ public class Casino {
         if (gameChoice.equals("0")){
 
             System.out.println("You chose go fish");
-            GoFish goFish = new GoFish(new goFishPlayer(name1), new goFishPlayer(name2));
+            GoFish goFish = new GoFish(new Player(name1), new Player(name2));
             goFish.startGame();
         }
         else if (gameChoice.equals("1")){
