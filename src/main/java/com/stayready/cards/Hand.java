@@ -37,6 +37,33 @@ public class Hand {
         return cardRemoved;
     }
 
+    public void removeBook(CardValue choice){
+        List<Card> removed = new ArrayList<Card>();
+        for (Card element : cards) {
+            if (element.getValue() == choice){
+                removed.add(element);
+            }
+        }
+        cards.removeAll(removed);
+    }
+    public Boolean isThereABook(CardValue value){
+        int counter = 0;
+        for(Card card: cards) {
+            if (card.getValue() == value) {
+                counter++;
+            }
+        }
+        if(counter == 4) {
+            return true;
+        }
+        return false;
+    }
+
+    public int getNumberOfCards(){
+        return cards.size();
+    }
+
+
     public int getNumberOfCardsWithSpecificValue(CardValue value){
         int counter = 0;
         for (Card element : cards) {

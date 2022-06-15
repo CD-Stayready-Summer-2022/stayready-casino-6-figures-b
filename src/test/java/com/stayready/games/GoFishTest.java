@@ -1,6 +1,6 @@
 package com.stayready.games;
 
-import com.stayready.cards.goFishPlayer;
+import com.stayready.Player;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -9,13 +9,13 @@ import org.junit.jupiter.api.Test;
 public class GoFishTest {
 
     private GoFish goFish;
-    private goFishPlayer player1;
-    private goFishPlayer player2;
+    private Player player1;
+    private Player player2;
 
     @BeforeEach
     public void setup(){
-        player1 = new goFishPlayer("Jimmy Bones");
-        player2 = new goFishPlayer("Tyra Banks");
+        player1 = new Player("Jimmy Bones");
+        player2 = new Player("Tyra Banks");
         goFish = new GoFish(player1, player2);
     }
 

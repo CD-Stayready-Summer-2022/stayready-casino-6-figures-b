@@ -11,17 +11,24 @@ public class Player {
 
     protected Hand hand;
 
-    public Player(String name, Integer age, Double money
-    ) {
+    private Integer bookNum = 0;
+
+    public Player(String name, Integer age, Double money) {
         this.name = name;
         this.age = age;
         this.money = money;
         hand = new Hand();
     }
 
+    public Player(String name) {
+        this.name = name;
+        this.age = 0;
+        this.money = 0.0;
+        hand = new Hand();
+    }
+
     public Hand getHand(){
         return hand;
-
     }
 
     public String getName() {
@@ -30,6 +37,14 @@ public class Player {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getBookNum() {
+        return bookNum;
+    }
+
+    public void setBookNum(Integer bookNum) {
+        this.bookNum = bookNum;
     }
 
 
