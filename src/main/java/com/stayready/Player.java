@@ -11,8 +11,9 @@ public class Player {
 
     protected Hand hand;
 
-    public Player(String name, Integer age, Double money
-    ) {
+    private Integer bookNum = 0;
+
+    public Player(String name, Integer age, Double money) {
         this.name = name;
         this.age = age;
         this.money = money;
@@ -25,7 +26,6 @@ public class Player {
 
     public Hand getHand(){
         return hand;
-
     }
 
     public String getName() {
@@ -46,6 +46,14 @@ public class Player {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getBookNum() {
+        return bookNum;
+    }
+
+    public void setBookNum(Integer bookNum) {
+        this.bookNum = bookNum;
     }
 
 

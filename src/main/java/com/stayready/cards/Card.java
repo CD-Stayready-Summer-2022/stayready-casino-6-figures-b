@@ -7,6 +7,7 @@ public class Card {
     public Card(CardValue value, CardSuit suit) {
         this.value = value;
         this.suit = suit;
+
     }
 
     @Override
@@ -27,8 +28,4 @@ public class Card {
     public String toString(){
         return String.format("[Suit: %s, Value: %s]", suit.name, value.name);
     }
-//    public String toString(){
-//        return String.format("+--------+\n|        |\n|        |\n| %s |\n|        |\n|   %s  |\n|        |\n+--------+"
-//                , suit.name, value.name);
-//    }
 }
