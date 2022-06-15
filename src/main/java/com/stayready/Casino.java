@@ -44,13 +44,14 @@ public class Casino {
     public void start(){
         System.out.println("Hello player, welcome to the [Lucky Star ☆] Casino.\nWhat is your name?");
         String name1 = scanner.next();
-        Integer age = 21;
-        Double money = 250.00;
+        System.out.println("What is your age"); //bd for users to input this
+        Integer age = scanner.nextInt();
+        System.out.println("How much money do you want to buy chips with?");
+        Double money = scanner.nextDouble();
         gameMenu(name1, age, money);
     }
 
     public static void main(String[] args) {
-        //new Casino().gameMenu("sabrina",21,250.00);
         main();
     }
 

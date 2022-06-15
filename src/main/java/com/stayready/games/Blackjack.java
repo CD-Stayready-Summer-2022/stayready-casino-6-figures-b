@@ -7,6 +7,8 @@ import java.util.Scanner;
 
 public class Blackjack extends CardGame {
     private final static Integer NUMBER_TO_DEAL = 2;
+    private final Hand pHand;
+    private final Hand dHand;
     private BlackJackPlayer player;
     private Dealer dealer;
     private Scanner scanner;
@@ -14,7 +16,6 @@ public class Blackjack extends CardGame {
     private Integer autoWin = 0;
     private Integer sum = 0;
     private Integer dealSum = 0;
-    private Boolean checkBJ = null;
     private int playerCardValue = 0;
     private int dealerCardValue = 0;
     private int pCountAces = 0;
@@ -23,6 +24,8 @@ public class Blackjack extends CardGame {
     public Blackjack(BlackJackPlayer player, Dealer dealer) {
         this.player = player;
         this.dealer = dealer;
+        this.pHand = player.getHand();
+        this.dHand = dealer.getHand();
         this.scanner = new Scanner(System.in);
     }
 
@@ -54,6 +57,7 @@ public class Blackjack extends CardGame {
         Double balance = player.getMoney();
         balance += 5.00 + increasedBet;
         player.setMoney(balance);
+        System.out.println(balance);
         return balance;
     }
 
@@ -61,75 +65,75 @@ public class Blackjack extends CardGame {
         Double balance = player.getMoney();
         balance += (5.00 + increasedBet)*2;
         player.setMoney(balance);
+        System.out.println(balance);
         return balance;
     }
 
     public void deal() {
         for (int i = 0; i < NUMBER_TO_DEAL; i++) {
             Card card1 = deck.takeCardFromDeck();
-            player.getHand().giveCardToHand(card1);
+            pHand.giveCardToHand(card1);
 
             Card card2 = deck.takeCardFromDeck();
-            dealer.getHand().giveCardToHand(card2);
+            dHand.giveCardToHand(card2);
         }
     }
 
     //can't test? because the cards randomize each run
     //find another way to test method...
-    public Boolean checkForNaturalBlackjack() {
-        for (int i = 0; i < player.getHand().getCards().size(); i++) {
-            playerCardValue = player.getHand().getCards().get(i).getValue().value;
-            sum = sum + playerCardValue;
+    public boolean checkForNaturalBlackjack() {
+        boolean isNaturalBlackjack = false;
+        for (int i = 0; i < 2; i++) {
+            playerCardValue = pHand.getCards().get(i).getValue().value;
+            sum += playerCardValue;
+            dealerCardValue = dHand.getCards().get(i).getValue().value;
+            dealSum += dealerCardValue;
+
             if (sum < 21) {
-                checkBJ = false;
+                isNaturalBlackjack = false;
             } else if (sum == 21) {
-                for (int j = 0; j < dealer.getHand().getCards().size(); j++) {
-                    CardValue dealerCardValue = dealer.getHand().getCards().get(j).getValue();
-                    dealSum = dealSum + dealerCardValue.value;
-                    if (dealSum < 21) {
-                        autoWin = 1;
-                    } else if (dealSum == 21) {
-                        autoWin = 0;
-                    } else {
-                        autoWin = 2;
-                    }
+                isNaturalBlackjack = true;
+                if (dealSum < 21) {
+                    autoWin = 1;
+                } else if (dealSum == 21) {
+                    autoWin = 0;
+                } else {
+                    autoWin = 2;
                 }
-                checkBJ = true;
-            } else {
-                checkBJ = null;
             }
+
         }
-        return checkBJ;
+        return isNaturalBlackjack;
     }
 
     public String playerHandOutput(){
-        String playerHand = player.getHand().getCards().toString();
+        String playerHand = pHand.getCards().toString();
         return playerHand;
     }
 
     public String dealerHandOutput(int choice) {
-        String dealerHand = null;
+        String dealerHand = "";
         switch (choice) {
             case 0:
-                dealerHand = dealer.getHand().getCards().get(0).toString();
+                dealerHand = dHand.getCards().get(0).toString();
                 break;
             case 1:
-                dealerHand = dealer.getHand().getCards().toString();
+                dealerHand = dHand.getCards().toString();
                 break;
         }
         return dealerHand;
     }
 
     public Integer playerHandSum(){
-        for (int i = 0 ; i < 2; i++) {
-            playerCardValue = playerCardValue + player.getHand().getCards().get(i).getValue().value;
+        for (int i = 0 ; i < 1; i++) {
+            playerCardValue += pHand.getCards().get(i).getValue().value;
         }
         return playerCardValue;
     }
 
     public Integer dealerHandSum(){
-        for (int i = 0 ; i < dealer.getHand().getCards().size(); i++) {
-            dealerCardValue = dealerCardValue + dealer.getHand().getCards().get(i).getValue().value;
+        for (int i = 0 ; i < 1; i++) {
+            dealerCardValue += dHand.getCards().get(i).getValue().value;
         }
         return dealerCardValue;
     }
@@ -137,8 +141,8 @@ public class Blackjack extends CardGame {
     //can't test? because the cards randomize each run
     //find another way to test method...
     public int playerCountAces(){
-        for (int i = 0 ; i < 2; i++){
-            int tempValue = player.getHand().getCards().get(i).getValue().value;
+        for (int i = 0 ; i < pHand.getCards().size(); i++){
+            int tempValue = pHand.getCards().get(i).getValue().value;
             if (tempValue==11){
                 pCountAces++;
             }
@@ -147,8 +151,8 @@ public class Blackjack extends CardGame {
     }
 
     public int dealerCountAces(){
-        for (int i = 0 ; i < dealer.getHand().getCards().size(); i++){
-            int tempValue = dealer.getHand().getCards().get(i).getValue().value;
+        for (int i = 0 ; i < dHand.getCards().size(); i++){
+            int tempValue = dHand.getCards().get(i).getValue().value;
             if (tempValue==11) {
                 dCountAces++;
             }
@@ -156,32 +160,50 @@ public class Blackjack extends CardGame {
         return dCountAces;
     }
 
+    public int pAceSum(){
+        int tempSum;
+        pCountAces = playerCountAces();
+
+        if (pCountAces > 1){
+            tempSum = (pCountAces-1) * 10;
+            playerCardValue -= tempSum;
+        }
+        return playerCardValue;
+    }
+
+    public int dAceSum(){
+        int tempSum;
+        dCountAces = dealerCountAces();
+
+        if (dCountAces > 1){
+            tempSum = (dCountAces-1) * 10;
+            dealerCardValue -= tempSum;
+        }
+        return dealerCardValue;
+    }
+
     //can't test? because the cards randomize each run
     //find another way to test method...
-    public Boolean checkForBust(){
-        playerCountAces();
-        dealerCountAces();
-        Boolean bustChk = null;
-        if (playerHandSum() > 21){
-            if (pCountAces > 1){
-                playerCardValue = playerHandSum() - 10;
-                checkForBust();
-            }
-            System.out.println("Player has bust, whoever is the closest to 21 without going over now wins\nCALCULATING...");
-            bustChk = true;
-            findWinner();
-        }else if (dealerHandSum()>21){
-            if (dCountAces > 1){
-                dealerCardValue = playerHandSum() - 10;
-                checkForBust();
-            }
-            System.out.println("House has bust, whoever is the closest to 21 without going over now wins\nCALCULATING...");
-            bustChk = true;
-            findWinner();
-        } else {
-            bustChk = false;
+    public Boolean playerIsBust(){
+        Boolean pIsBust = false;
+        pAceSum();
+        if (playerHandSum()>21){
+            pIsBust = true;
+        } else if (playerHandSum()<=21) {
+            pIsBust=false;
         }
-        return bustChk;
+        return pIsBust;
+    }
+
+    public Boolean dealerIsBust(){
+        Boolean dIsBust = false;
+        dAceSum();
+        if (dealerHandSum()>21){
+            dIsBust = true;
+        } else if (dealerHandSum()<=21) {
+            dIsBust=false;
+        }
+        return dIsBust;
     }
 
     public void playerHitOrStand () {
@@ -190,30 +212,39 @@ public class Blackjack extends CardGame {
         if (input == 0){
             System.out.println("You chose hit.");
             Card card1 = deck.takeCardFromDeck();
-            player.getHand().giveCardToHand(card1);
+            pHand.giveCardToHand(card1);
             System.out.println("Players hand"+playerHandOutput());
             System.out.println("Dealers hand"+dealerHandOutput(0));
-            if (!checkForBust()){
+            if (!playerIsBust()){
                 playerHitOrStand();
             }
             else{
                 System.out.println("Your hand busts and you lose! Try again!");
+                System.out.println("Players hand" + playerHandOutput());
+                System.out.println("Dealers hand"+dealerHandOutput(1));
             }
         }
         else if (input == 1){
             System.out.println("You chose stand. Dealers turn!");
-            dealerAlgorithm();
         }
     }
 
     public void dealerAlgorithm(){
         if (dealerHandSum()<17){
+            System.out.println("Dealers hand: "+dealerHandOutput(1));
             System.out.println("Dealer hit.");
             Card card1 = deck.takeCardFromDeck(); //hit
-            dealer.getHand().giveCardToHand(card1);
-            checkForBust();
+            dHand.giveCardToHand(card1);
+            if (dealerIsBust()){
+                System.out.println("House busts!\nGame over.");
+                System.out.println("Players hand" + playerHandOutput());
+                System.out.println("Dealers hand"+dealerHandOutput(1));
+                findWinner();
+            } else if (!dealerIsBust()) {
+                dealerAlgorithm();
+            }
         }
-        else if (dealerHandSum()>17 && !checkForBust()){
+        else if (dealerHandSum()>=17){
             System.out.println("Dealer stood.\nLet's reveal the hands!");
             System.out.println("Players hand" + playerHandOutput());
             System.out.println("Dealers hand"+dealerHandOutput(1));
@@ -225,20 +256,23 @@ public class Blackjack extends CardGame {
         Integer playerSum = playerHandSum();
         Integer dealerSum = dealerHandSum();
 
-        if (playerSum>dealerSum && !checkForBust()){
+        if (playerSum>dealerSum){
             String msg = String.format("Congratulations %s! You have won this round.", player.getName());
             System.out.println(msg);
             winBet(increasedBet);
+            System.out.println(player.getMoney());
         }
         else if (playerSum<dealerSum){
             String msg = String.format("Unfortunately you have lost, and this round goes to the house. Try again!");
             System.out.println(msg);
+            System.out.println(player.getMoney());
         }
         else if (playerSum==dealerSum){
             String msg = String.format("The round ends in a push, %s and %s both have %s and have drawn."
                     , player.getName(), dealer.getName(), playerSum);
             System.out.println(msg);
             returnBet(increasedBet);
+            System.out.println(player.getMoney());
         }
         else{
             String msg = String.format("%s, [Lucky Star ☆] apologizes as a technical error has occurred." +
@@ -260,10 +294,10 @@ public class Blackjack extends CardGame {
             deal();
             System.out.println("Your cards: " + playerHandOutput());
             System.out.println("Dealer revealed card: " + dealerHandOutput(0));
-
-            if (checkForNaturalBlackjack() == false) {
+            if (!checkForNaturalBlackjack()) {
                 playerHitOrStand();
-            } else if (checkForNaturalBlackjack() == true) {
+                dealerAlgorithm();
+            } else if (checkForNaturalBlackjack()) {
                 switch (autoWin) {
                     case 0:
                         String msg = String.format("The round ends in a push, " +
@@ -297,15 +331,4 @@ public class Blackjack extends CardGame {
             Casino.main();
         }
     }
-
-
-    // win conditions:
-    //    By drawing a hand value that is higher than the dealer’s hand value
-    //    By the dealer drawing a hand value that goes over 21.
-    //    By drawing a hand value of 21 on your first two cards, when the dealer does not.
-
-    // lose conditions:
-    //    Your hand value exceeds 21.
-    //    The dealers hand has a greater value than yours at the end of the round
-
 }
