@@ -267,9 +267,13 @@ public class GoFish extends CardGame {
                 System.out.println(String.format(" * %s just made got a full book of %ss!* ", player.getName(), choice.name));
             }
 
-            if(hand2.getNumberOfCards() != 0 && deck.cardsRemaining() !=0){
-                hand2.giveCardToHand(deck.takeCardFromDeck());
-                promptComputerToPlay(player, opponent, hardMode, fastMode);
+            if(hand2.getNumberOfCards() != 0 ){
+                if( deck.cardsRemaining() !=0){
+                    hand2.giveCardToHand(deck.takeCardFromDeck());
+                    promptComputerToPlay(player, opponent, hardMode, fastMode);
+                }
+            }else{
+
             }
         }
         else{
