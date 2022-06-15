@@ -32,6 +32,18 @@ public class Player {
         return name;
     }
 
+    public Integer getAge() {
+        return age;
+    }
+
+    public Double getMoney() {
+        return money;
+    }
+
+    public void setMoney(Double money){
+        this.money = money;
+    }
+
     public void setName(String name) {
         this.name = name;
     }

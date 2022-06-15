@@ -13,12 +13,8 @@ public class Casino {
         scanner = new Scanner(System.in);
     }
 
-    public void start(){
+    public void gameMenu(String name1,int age, Double money){
         String name2 = "[Lucky Star ☆] Casino";
-        System.out.println("Hello player, welcome to the [Lucky Star ☆] Casino.\nWhat is your name?");
-        String name1 = scanner.next();
-        Integer age = 21;
-        Double money = 250.00;
         System.out.println("What game would you like to play?\n" +
                 "Press 0 for Go Fish\n" +
                 "Press 1 for Blackjack\n" +
@@ -45,7 +41,20 @@ public class Casino {
         }
     }
 
+    public void start(){
+        System.out.println("Hello player, welcome to the [Lucky Star ☆] Casino.\nWhat is your name?");
+        String name1 = scanner.next();
+        Integer age = 21;
+        Double money = 250.00;
+        gameMenu(name1, age, money);
+    }
+
     public static void main(String[] args) {
+        //new Casino().gameMenu("sabrina",21,250.00);
+        main();
+    }
+
+    public static void main() {
         new Casino().start();
     }
 }
