@@ -8,12 +8,14 @@ import java.util.Scanner;
 
 public class Casino {
     private Scanner scanner;
+    private String name2 = "[Lucky Star ☆] Casino";
 
     public Casino(){
         scanner = new Scanner(System.in);
     }
     public void gameMenu(String name1,int age, Double money){
-        String name2 = "[Lucky Star ☆] Casino";
+        Player player1 = new Player(name1);
+        Player player2 = new Player(name2);
         System.out.println("What game would you like to play?\n" +
                 "Press 0 for Go Fish\n" +
                 "Press 1 for Blackjack\n" +
@@ -22,7 +24,7 @@ public class Casino {
         if (gameChoice.equals("0")){
 
             System.out.println("You chose go fish");
-            GoFish goFish = new GoFish(new Player(name1), new Player(name2));
+            GoFish goFish = new GoFish(player1,player2);
             goFish.startGame();
         }
         else if (gameChoice.equals("1")){
@@ -43,6 +45,7 @@ public class Casino {
     }
 
     public void start(){
+
         System.out.println("Hello player, welcome to the [Lucky Star ☆] Casino.\nWhat is your name?");
         String name1 = scanner.next();
         System.out.println("What is your age"); //bd for users to input this
@@ -53,11 +56,8 @@ public class Casino {
     }
 
     public static void main(String[] args) {
-        main();
-    }
-
-    public static void main() {
         new Casino().start();
     }
+
 
 }

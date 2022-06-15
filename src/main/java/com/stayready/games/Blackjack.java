@@ -328,7 +328,6 @@ public class Blackjack extends CardGame {
         }
         else{
             System.out.println("You are too young to gamble, sorry!");
-            Casino.main();
         }
     }
 }
